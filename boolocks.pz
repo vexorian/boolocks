@@ -1,0 +1,1686 @@
+title Boolocks 0.51
+author vexorian
+homepage vexorian.itch.io
+
+color_palette mastersystem white #F0F0F0 black #252525 red #C04040 lightred #D08080 yellow #D0D020 lightbrown #E0E040 blue  #8080FF lightblue #A0A0FF green #10B010 darkgreen #208020 grey #A0A0A0 darkgrey #808080
+
+export_options notitle,nofooter,nopadding
+
+case_sensitive
+background_color white
+text_color black
+runtime_metadata_twiddling
+run_rules_on_level_start
+key_repeat_interval 0.20
+sprite_size 16
+status_line
+
+realtime_interval 0.05
+(realtime_interval 0.5)
+
+
+
+status_line
+level_select
+
+animate_interval 0.1
+
+
+(
+Copyright (c) 2026, Victor Hugo Soliz Kuncar
+
+This software is provided 'as-is', without any express or implied
+warranty. In no event will the authors be held liable for any damages
+arising from the use of this software.
+
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:
+
+1. The origin of this software must not be misrepresented; you must not
+   claim that you wrote the original software. If you use this software
+   in a product, an acknowledgment in the product documentation would be
+   appreciated but is not required.
+2. Altered source versions must be plainly marked as such, and must not be
+   misrepresented as being the original software.
+3. This notice may not be removed or altered from any source distribution.
+)
+
+========
+TAGS
+========
+
+color     = red blue yellow
+lock      = red blue yellow no_lock
+not_red   = blue yellow
+
+other_color = red blue yellow
+
+direction = up down left right
+
+(its useful to have another direction tag with a different name)
+anydir = up down left right
+
+antistate = anti notanti
+
+s4 = m0 m1 m2 m3
+
+s6 = m0 m1 m2 m3 m4 m5
+
+s20 = m0 m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 m15 m16 m17 m18 m19
+
+s10 = m0 m1 m2 m3 m4 m5 m6 m7 m8 m9
+
+even = m0 m2 m4 m6 m8 m10 m12 m14 m16 m18
+odd  = m1 m3 m5 m7 m9 m11 m13 m15 m17 m19
+
+========
+MAPPINGS
+========
+
+s4 => next4
+m0 m1 m2 m3 -> m1 m2 m3 m0
+
+s20 => next20
+m0 m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 m15 m16 m17 m18 m19 -> m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 m15 m16 m17 m18 m19 m0
+
+
+s10 => next10
+m0 m1 m2 m3 m4 m5 m6 m7 m8 m9 -> m1 m2 m3 m4 m5 m6 m7 m8 m9 m0
+
+
+========
+OBJECTS
+========
+
+Background 
+white
+
+CrossSprite:m0:color
+transparent
+
+Cross:red
+lightred red white
+1100002222000011
+1000002222000001
+0022222222222200
+0022222222222200
+0022222222222200
+0022222222222200
+2222222222222222
+2222222222222222
+2222222222222222
+2222222222222222
+0022222222222200
+0022222222222200
+0022222222222200
+0022222222222200
+1000002222000001
+1100002222000011
+
+
+CrossSprite:m1:red
+lightred red white
+0001111000222200
+0000000000222200
+2222222222222200
+2222222222222201
+2222222222222201
+2222222222222201
+0022222222222201
+0022222222222200
+0022222222222200
+1022222222222200
+1022222222222222
+1022222222222222
+1022222222222222
+0022222222222222
+0022220000000000
+0022220001111000
+
+CrossSprite:m2:red
+lightred red white
+2220001111000222
+2220000000000222
+2222222222222222
+0022222222222200
+0022222222222200
+0022222222222200
+1022222222222201
+1022222222222201
+1022222222222201
+1022222222222201
+0022222222222200
+0022222222222200
+0022222222222200
+2222222222222222
+2220000000000222
+2220001111000222
+
+CrossSprite:m3:red
+lightred red white
+0022220000000000
+0022220001111000
+0022222222222222
+1022222222222222
+1022222222222222
+1022222222222222
+1022222222222200
+0022222222222200
+0022222222222200
+0022222222222201
+2222222222222201
+2222222222222201
+2222222222222201
+2222222222222200
+0001111000222200
+0000000000222200
+
+
+Cross:blue
+lightblue blue white
+copy:Cross:red
+
+CrossSprite:m1:blue
+lightblue blue white
+copy:CrossSprite:m1:red
+
+CrossSprite:m2:blue
+lightblue blue white
+copy:CrossSprite:m2:red
+
+CrossSprite:m3:blue
+lightblue blue white
+copy:CrossSprite:m3:red
+
+
+
+Cross:yellow
+lightbrown yellow white
+copy:Cross:red
+
+CrossSprite:m1:yellow
+lightbrown yellow white
+copy:CrossSprite:m1:red
+
+CrossSprite:m2:yellow
+lightbrown yellow white
+copy:CrossSprite:m2:red
+
+CrossSprite:m3:yellow
+lightbrown yellow white
+copy:CrossSprite:m3:red
+
+
+
+Player:right:no_lock
+black green green
+.00000000000000.
+0000000000000000
+0001111111111000
+0011111111111100
+0010000110000100
+0010000110000100
+0011100111100100
+0011112222111100
+0011122222211100
+0011122112211100
+0011122112211100
+0011122222211100
+0011112222111100
+0001111111111000
+0000000000000000
+.00000000000000.
+
+Player:left:no_lock
+black green green
+.00000000000000.
+0000000000000000
+0001111111111000
+0011111111111100
+0010000110000100
+0010000110000100
+0010011110011100
+0011112222111100
+0011122222211100
+0011122112211100
+0011122112211100
+0011122222211100
+0011112222111100
+0001111111111000
+0000000000000000
+.00000000000000.
+
+Player:up:no_lock
+black green green
+.00000000000000.
+0000000000000000
+0001111111111000
+0010000110000100
+0010000110000100
+0011001111001100
+0011111111111100
+0011112222111100
+0011122222211100
+0011122112211100
+0011122112211100
+0011122222211100
+0011112222111100
+0001111111111000
+0000000000000000
+.00000000000000.
+
+
+Player:down:no_lock
+black green green
+.00000000000000.
+0000000000000000
+0001111111111000
+0011111111111100
+0011111111111100
+0010000110000100
+0010000110000100
+0011002222001100
+0011122222211100
+0011122112211100
+0011122112211100
+0011122222211100
+0011112222111100
+0001111111111000
+0000000000000000
+.00000000000000.
+
+
+
+Player:direction:red
+black green red
+copy:Player:direction:no_lock
+
+Player:direction:yellow
+black green yellow
+copy:Player:direction:no_lock
+
+Player:direction:blue
+black green blue
+copy:Player:direction:no_lock
+
+OpenPlayer:red
+darkgreen red
+................
+..00.000.00.00..
+.0............0.
+.0............0.
+....00....00....
+.0..00....00..0.
+.0............0.
+..............0.
+.0.....11.......
+.0....1111....0.
+.0....1111....0.
+.......11.......
+.0............0.
+.0............0.
+..00.00.000.00..
+................
+
+OpenPlayer:blue
+darkgreen blue
+copy:OpenPlayer:red
+
+OpenPlayer:yellow
+darkgreen yellow
+copy:OpenPlayer:red
+
+Exit
+black grey grey
+................
+................
+................
+....00000000....
+....00000000....
+....00..........
+....00..........
+....00000.......
+....00000.......
+....00..........
+....00..........
+....00000000....
+....00000000....
+................
+................
+................
+
+
+
+
+Wall:no_lock
+black black black grey grey
+3333333333333333
+3000000000003333
+3033333333333003
+3033333333333003
+3033344444333003
+3033444444433003
+3033443334433003
+3033443334433003
+3033443334433003
+3033444444433003
+3033344444333003
+3033333333333003
+3033333333333003
+3330000000000003
+3330000000000003
+3333333333333333
+
+Wall:red
+black black black grey red
+copy:Wall:no_lock
+
+Wall:yellow
+black black black grey yellow
+copy:Wall:no_lock
+
+Wall:blue
+black black black grey blue
+copy:Wall:no_lock
+
+OpenWall:red
+darkgrey red
+................
+.00.00.00.00.00.
+.0............0.
+................
+.0............0.
+.0............0.
+.......11.......
+.0....1111....0.
+.0....1111....0.
+.......11.......
+.0............0.
+.0............0.
+................
+.0............0.
+.00.00.00.00.00.
+................
+
+OpenWall:blue
+darkgrey blue
+copy:OpenWall:red
+
+OpenWall:yellow
+darkgrey yellow
+copy:OpenWall:red
+
+
+
+Block:red:no_lock
+black red red
+................
+..000000000000..
+.00000000000000.
+.00111111111100.
+.00111111111100.
+.00111122111100.
+.00111222211100.
+.00112211221100.
+.00112211221100.
+.00111222211100.
+.00111122111100.
+.00111111111100.
+.00111111111100.
+.00000000000000.
+..000000000000..
+................
+
+OpenBlock:red:red
+red red
+................
+................
+...0.00.000.0...
+..0..........0..
+................
+..0..........0..
+..0....11....0..
+......1111...0..
+..0...1111......
+..0....11....0..
+..0..........0..
+................
+..0..........0..
+...0.00.000.0...
+................
+................
+
+OpenBlock:red:blue
+red blue
+copy:OpenBlock:red:red
+
+OpenBlock:red:yellow
+red yellow
+copy:OpenBlock:red:red
+
+
+
+OpenBlock:blue:red
+blue red
+copy:OpenBlock:red:red
+
+OpenBlock:blue:blue
+blue blue
+copy:OpenBlock:red:red
+
+OpenBlock:blue:yellow
+blue yellow
+copy:OpenBlock:red:red
+
+
+OpenBlock:yellow:red
+yellow red
+copy:OpenBlock:red:red
+
+OpenBlock:yellow:blue
+yellow blue
+copy:OpenBlock:red:red
+
+OpenBlock:yellow:yellow
+yellow yellow
+copy:OpenBlock:red:red
+
+
+
+(in reality a block with a lock of its same color makes no sense, but rules will be a lot less picky if we define it)
+
+Block:red:red
+black red red
+copy:Block:red:no_lock
+
+Block:red:blue
+black red blue
+copy:Block:red:no_lock
+
+Block:red:yellow
+black red yellow
+copy:Block:red:no_lock
+
+
+Block:blue:no_lock
+black blue blue
+copy:Block:red:no_lock
+
+Block:blue:red
+black blue red
+copy:Block:red:no_lock
+
+Block:blue:blue
+black blue blue
+copy:Block:red:no_lock
+
+Block:blue:yellow
+black blue yellow
+copy:Block:red:no_lock
+
+Block:yellow:no_lock
+black yellow yellow
+copy:Block:red:no_lock
+
+Block:yellow:red
+black yellow red
+copy:Block:red:no_lock
+
+Block:yellow:blue
+black yellow blue
+copy:Block:red:no_lock
+
+Block:yellow:yellow
+black yellow yellow
+copy:Block:red:no_lock
+
+WildCard:no_lock
+black red yellow blue black black black
+................
+..000000000000..
+.00000000000000.
+.00222221111100.
+.00222221111100.
+.00220054001100.
+.00220554401100.
+.00225500441100.
+.00336600552200.
+.00330665502200.
+.00330065002200.
+.00333332222200.
+.00333332222200.
+.00000000000000.
+..000000000000..
+................
+
+WildCard:red
+black red yellow blue red red red
+copy:WildCard:no_lock
+
+WildCard:yellow
+black red yellow blue yellow yellow yellow
+copy:WildCard:no_lock
+
+WildCard:blue
+black red yellow blue blue blue blue
+copy:WildCard:no_lock
+
+OpenWildCard:red
+red yellow blue red
+................
+................
+...11.1100.00...
+..1..........0..
+..1..........0..
+................
+..1....33....0..
+..1...3333...0..
+..2...3333...1..
+..2....33....1..
+................
+..2..........1..
+..2..........1..
+...22.2211.11...
+................
+................
+
+OpenWildCard:yellow
+red yellow blue yellow
+copy:OpenWildCard:red
+
+OpenWildCard:blue
+red yellow blue blue
+copy:OpenWildCard:red
+
+
+
+Glue:no_lock
+purple pink purple pink
+...0000..00000..
+.00000000000000.
+000000000000100.
+000000000100000.
+000000032000000.
+.001022222200000
+0000022002210000
+0000220000220000
+0000230000220000
+.000022002200000
+.00002222221000.
+000000022000000.
+000100000000000.
+000000010000100.
+.0000000000000..
+...00..00..00...
+
+OpenGlue:red
+purple pink red
+................
+....0.0.00.0....
+...0...0....0...
+.............0..
+.0..............
+.0...........0..
+..0....22.....0.
+......2222....0.
+.0....2222......
+..0....22.....0.
+.............0..
+.0..............
+..0..........0..
+....0.0..0..0...
+.....0..0..0....
+................
+
+OpenGlue:yellow
+purple pink yellow
+copy:OpenGlue:red
+
+OpenGlue:blue
+purple pink blue
+copy:OpenGlue:red
+
+
+Glue:red
+purple pink red red
+copy:Glue:no_lock
+
+Glue:yellow
+purple pink yellow yellow
+copy:Glue:no_lock
+
+Glue:blue
+purple pink blue blue
+copy:Glue:no_lock
+
+
+
+(Antis)
+
+(So, I guess we still have no easy way to copy sprites colors and all)
+AntiPlayer:direction:red
+black green red
+copy:Player:direction:red
+
+AntiPlayer:direction:blue
+black green blue
+copy:Player:direction:red
+
+AntiPlayer:direction:yellow
+black green yellow
+copy:Player:direction:red
+
+OpenAntiPlayer:red
+darkgreen red
+copy:OpenPlayer:red
+
+OpenAntiPlayer:blue
+darkgreen blue
+copy:OpenPlayer:red
+
+OpenAntiPlayer:yellow
+darkgreen yellow
+copy:OpenPlayer:red
+
+AntiWall:red
+black black black grey red
+copy:Wall:red
+
+AntiWall:yellow
+black black black grey yellow
+copy:Wall:yellow
+
+AntiWall:blue
+black black black grey blue
+copy:Wall:blue
+
+OpenAntiWall:red
+darkgrey red
+copy:OpenWall:red
+
+OpenAntiWall:yellow
+darkgrey yellow
+copy:OpenWall:yellow
+
+OpenAntiWall:blue
+darkgrey blue
+copy:OpenWall:blue
+
+AntiBlock:red:red
+black red red
+copy:Block:red:no_lock
+
+AntiBlock:red:yellow
+black red yellow
+copy:Block:red:no_lock
+
+AntiBlock:red:blue
+black red blue
+copy:Block:red:no_lock
+
+AntiBlock:yellow:red
+black yellow red
+copy:Block:red:no_lock
+
+AntiBlock:yellow:yellow
+black yellow yellow
+copy:Block:red:no_lock
+
+AntiBlock:yellow:blue
+black yellow blue
+copy:Block:red:no_lock
+
+AntiBlock:blue:red
+black blue red
+copy:Block:red:no_lock
+
+AntiBlock:blue:yellow
+black blue yellow
+copy:Block:red:no_lock
+
+AntiBlock:blue:blue
+black blue blue
+copy:Block:red:no_lock
+
+OpenAntiBlock:red:red
+red red
+copy:OpenBlock:red:red
+
+OpenAntiBlock:red:yellow
+red yellow
+copy:OpenBlock:red:red
+
+OpenAntiBlock:red:blue
+red blue
+copy:OpenBlock:red:red
+
+OpenAntiBlock:yellow:red
+yellow red
+copy:OpenBlock:red:red
+
+OpenAntiBlock:yellow:yellow
+yellow yellow
+copy:OpenBlock:red:red
+
+OpenAntiBlock:yellow:blue
+yellow blue
+copy:OpenBlock:red:red
+
+OpenAntiBlock:blue:red
+blue red
+copy:OpenBlock:red:red
+
+OpenAntiBlock:blue:yellow
+blue yellow
+copy:OpenBlock:red:red
+
+OpenAntiBlock:blue:blue
+blue blue
+copy:OpenBlock:red:red
+
+AntiWildCard:red
+black red yellow blue red red red
+copy:WildCard:no_lock
+
+AntiWildCard:yellow
+black red yellow blue yellow yellow yellow
+copy:WildCard:no_lock
+
+AntiWildCard:blue
+black red yellow blue blue blue blue
+copy:WildCard:no_lock
+
+OpenAntiWildCard:red
+red yellow blue red
+copy:OpenWildCard:red
+
+OpenAntiWildCard:yellow
+red yellow blue yellow
+copy:OpenWildCard:red
+
+OpenAntiWildCard:blue
+red yellow blue blue
+copy:OpenWildCard:red
+
+
+AntiGlue:red
+purple pink red red
+copy:Glue:red
+
+AntiGlue:yellow
+purple pink yellow yellow
+copy:Glue:yellow
+
+AntiGlue:blue
+purple pink blue blue
+copy:Glue:blue
+
+
+OpenAntiGlue:red
+purple pink red red
+copy:OpenGlue:red
+
+OpenAntiGlue:blue
+purple pink blue blue
+copy:OpenGlue:blue
+
+OpenAntiGlue:yellow
+purple pink yellow yellow
+copy:OpenGlue:yellow
+
+(Helpers -why do we still have to type this? - Do we still have to type this?)
+
+All:color
+transparent
+
+PreviouslyAll:color
+transparent
+
+
+Moving:direction
+transparent
+
+Error
+transparent
+
+ExecuteOpen:antistate:color
+transparent
+
+ExecuteClose:antistate:color
+transparent
+
+AlmostClose:antistate:color
+transparent
+
+
+PresenceSFX:color
+transparent
+
+VictorySound
+transparent
+
+KeyPress:direction
+transparent
+
+ActiveMoving:direction
+transparent
+
+ReallyMoving:direction
+transparent
+
+Tick:s20
+transparent
+
+LockTick:s20
+transparent
+
+
+ExecuteLockLogic
+transparent
+
+HeroCell
+transparent
+
+GoalStateChanged
+transparent
+
+LockCooldown
+transparent
+
+
+=======
+LEGEND
+=======
+
+. = Background
+
+@ = Exit and Background
+
+1 = Cross:red    and Background
+2 = Cross:blue   and Background
+3 = Cross:yellow and Background
+
+
+P = Player:right:no_lock  and Background
+Q = Player:right:red      and Background
+R = Player:right:yellow   and Background
+S = Player:right:blue     and Background
+
+q = OpenAntiPlayer:red     and Background
+r = OpenAntiPlayer:yellow  and Background
+s = OpenAntiPlayer:blue    and Background
+
+
+W = Wall:no_lock and Background
+X = Wall:red     and Background
+Y = Wall:blue    and Background
+Z = Wall:yellow  and Background
+
+x = OpenAntiWall:red    and Background
+y = OpenAntiWall:blue   and Background
+z = OpenAntiWall:yellow and Background
+
+I = Block:red:no_lock and Background
+J = Block:red:yellow  and Background
+K = Block:red:blue   and Background
+
+A = Block:yellow:no_lock and Background
+B = Block:yellow:red     and Background
+C = Block:yellow:blue    and Background
+
+L = Block:blue:no_lock and Background
+M = Block:blue:red     and Background
+N = Block:blue:yellow  and Background
+
+
+j = OpenAntiBlock:red:yellow  and Background
+k = OpenAntiBlock:red:blue   and Background
+
+b = OpenAntiBlock:yellow:red     and Background
+c = OpenAntiBlock:yellow:blue    and Background
+
+m = OpenAntiBlock:blue:red     and Background
+n = OpenAntiBlock:blue:yellow  and Background
+
+* = WildCard:no_lock and Background
+$ = WildCard:red     and Background
+% = WildCard:yellow  and Background
+& = WildCard:blue    and Background
+! = OpenAntiWildCard:red     and Background
+# = OpenAntiWildCard:yellow  and Background
++ = OpenAntiWildCard:blue    and Background
+
+G = Glue:no_lock and Background
+F = Glue:red     and Background
+E = Glue:yellow  and Background
+D = Glue:blue    and Background
+
+f = OpenAntiGlue:red     and Background
+e = OpenAntiGlue:yellow  and Background
+d = OpenAntiGlue:blue    and Background
+
+V = WildCard:yellow and Cross:yellow and Background
+
+
+Wall = Wall:lock or AntiWall:color
+player = Player:direction:lock or AntiPlayer:direction:color
+Pushable = Block:color:lock or AntiBlock:other_color:color or AntiWildCard:color or WildCard:lock or Glue:lock or AntiGlue:color
+Sticky = Glue:lock or AntiGlue:color
+
+Block:red     = Block:color:red
+Block:yellow  = Block:color:yellow
+Block:blue    = Block:color:blue
+Block:no_lock = Block:color:no_lock
+
+OpenBlock:red     = OpenBlock:color:red
+OpenBlock:yellow  = OpenBlock:color:yellow
+OpenBlock:blue    = OpenBlock:color:blue
+
+
+AntiBlock:red     = AntiBlock:color:red
+AntiBlock:yellow  = AntiBlock:color:yellow
+AntiBlock:blue    = AntiBlock:color:blue
+
+OpenAntiBlock:red    = OpenAntiBlock:color:red
+OpenAntiBlock:yellow = OpenAntiBlock:color:yellow
+OpenAntiBlock:blue   = OpenAntiBlock:color:blue
+
+
+WildCard = WildCard:lock
+AntiWildCard = AntiWildCard:color
+
+(In an ideal world, I would just be able to do With:color = ...:color , but this is
+not an ideal world)
+(With:color = (Block:red or AntiBlock:red or WildCard or AntiWildCard) Wall)
+With:red    = Block:red:lock    or AntiBlock:red:color    or WildCard or AntiWildCard 
+With:blue   = Block:blue:lock   or AntiBlock:blue:color   or WildCard or AntiWildCard 
+With:yellow = Block:yellow:lock or AntiBlock:yellow:color or WildCard or AntiWildCard 
+
+
+
+
+(I hate this so much, I had a better set of rules at one point, but I wanted to clean them up, it led to PS:next
+basically dying on me and getting all bugged and I was forced to type these things to 'fix' the problem)
+
+ClosedB:no_lock =      Block:no_lock or     Player:direction:no_lock  or     Glue:no_lock  or     WildCard:no_lock  or     Wall:no_lock
+Closed:red   =      Block:red  or     Player:direction:red or     Glue:red or     WildCard:red or     Wall:red
+Closed:yellow   =      Block:yellow  or     Player:direction:yellow or     Glue:yellow or     WildCard:yellow or     Wall:yellow
+Closed:blue   =      Block:blue  or     Player:direction:blue or     Glue:blue or     WildCard:blue or     Wall:blue
+
+AntiClosed:red   =      AntiBlock:red  or     AntiPlayer:direction:red or     AntiGlue:red or     AntiWildCard:red or     AntiWall:red
+AntiClosed:yellow   =      AntiBlock:yellow  or     AntiPlayer:direction:yellow or     AntiGlue:yellow or     AntiWildCard:yellow or     AntiWall:yellow
+AntiClosed:blue   =      AntiBlock:blue  or     AntiPlayer:direction:blue or     AntiGlue:blue or     AntiWildCard:blue or     AntiWall:blue
+
+
+(BUG HERE, comment next line and comment ount the following 3 lines to fix it)
+(Open:color       = OpenBlock:color or OpenPlayer:color or OpenGlue:color or  OpenWildCard:color or OpenWall:color)
+
+
+Open:red       = OpenBlock:red or OpenPlayer:red or OpenGlue:red or OpenWildCard:red or OpenWall:red
+Open:yellow    = OpenBlock:yellow or OpenPlayer:yellow or OpenGlue:yellow or OpenWildCard:yellow or OpenWall:yellow
+Open:blue      = OpenBlock:blue or OpenPlayer:blue or OpenGlue:blue or OpenWildCard:blue or OpenWall:blue
+
+OpenAnti:red       = OpenAntiBlock:red or OpenAntiPlayer:red or OpenAntiGlue:red or OpenAntiWildCard:red or OpenAntiWall:red
+OpenAnti:yellow    = OpenAntiBlock:yellow or OpenAntiPlayer:yellow or OpenAntiGlue:yellow or OpenAntiWildCard:yellow or OpenAntiWall:yellow
+OpenAnti:blue      = OpenAntiBlock:blue or OpenAntiPlayer:blue or OpenAntiGlue:blue or OpenAntiWildCard:blue or OpenAntiWall:blue
+
+Solid = Closed:red or Closed:yellow or Closed:blue or ClosedB:no_lock or AntiClosed:color
+
+(I think making it uneven makes it sound better)
+LockRate = LockTick:m0 or LockTick:m4 or LockTick:m8 or LockTick:m10 or LockTick:m12 or LockTick:m16
+
+=======
+SOUNDS
+=======
+
+SFX1  53649302:3 (glue)
+VictorySound create  44874503:3 (exit)
+
+
+ExecuteClose:antistate:color Create  53440904:3
+ExecuteOpen:antistate:color  Create  96726104:3
+
+(Cross:color action afx:turn=.001,.01)
+
+Block:lock Move 61909704:1 
+
+Open:color     action afx:zoom 96884102:1
+OpenAnti:color action afx:zoom 96884102:1
+
+Open:color     create afx:zoom=1.2,1
+OpenAnti:color create afx:zoom=1.2,1
+
+PresenceSFX:color create 60305900:1
+PresenceSFX:color destroy 22328506:1
+
+Closed:color     action afx:zoom=0.9,1.1e
+AntiClosed:color action afx:zoom=0.9,1.1
+
+
+
+================
+COLLISIONLAYERS
+================
+
+Background
+
+KeyPress:up
+KeyPress:down
+KeyPress:right
+KeyPress:left
+ActiveMoving:up
+ActiveMoving:down
+ActiveMoving:right
+ActiveMoving:left
+ReallyMoving:up
+ReallyMoving:down
+ReallyMoving:left
+ReallyMoving:right
+
+Cross:color
+CrossSprite:s4:color
+Exit
+
+Open:red    
+OpenAnti:red
+Open:yellow
+OpenAnti:yellow
+Open:blue
+OpenAnti:blue
+
+Solid
+
+All:red
+PreviouslyAll:red
+All:yellow
+PreviouslyAll:yellow
+All:blue
+PreviouslyAll:blue
+
+Moving:up
+Moving:down
+Moving:right
+Moving:left
+
+Error
+
+ExecuteOpen:notanti:color
+ExecuteOpen:anti:color
+
+AlmostClose:notanti:red ExecuteClose:notanti:red
+AlmostClose:anti:red ExecuteClose:anti:red
+
+AlmostClose:notanti:blue ExecuteClose:notanti:blue
+AlmostClose:anti:blue ExecuteClose:anti:blue
+
+
+AlmostClose:notanti:yellow ExecuteClose:notanti:yellow
+AlmostClose:anti:yellow    ExecuteClose:anti:yellow
+
+VictorySound PresenceSFX:color
+
+Tick:s20
+LockTick:s20
+HeroCell
+ExecuteLockLogic
+GoalStateChanged
+LockCooldown
+
+======
+RULES
+======
+
+(=============== Main loop ====================)
+
+[  ] -> [ HeroCell]
+up   [ HeroCell | ] -> [|]
+left [ HeroCell | ] -> [|]
+
+
+[ stationary Background ] -> [ action Background ]
+[ Solid ][ action Background ] -> [ Solid ][ Background ]
+[ action Background ] -> status Thank you for opening the world.
+[ HeroCell Tick:s20 ][ action Background ] -> [ HeroCell ][ action Background ]
+
+[ action player Exit ] -> win
+
+
+
+
+lock  [ > Player:direction:lock  ] -> [ > Player:>:lock ]
+color  [ > AntiPlayer:direction:color  ] -> [ > AntiPlayer:>:color ]
+
+[ HeroCell ][ > player ] -> [ action HeroCell KeyPress:> ][ player ]
+
+
+[stationary HeroCell ] -> gosub RealTimeTick
+
+
+
+
+[ Exit VictorySound no player ] -> [ Exit ]
+late [ player Exit no VictorySound ] -> [ VictorySound player Exit ]
+late [ player Exit ] -> status gg. Press X to continue
+[ moving player Exit ] -> [ stationary player Exit ]
+
+
+
+
+(================================================================================)
+subroutine RealTimeTick
+
+
+[ HeroCell no Tick:s20 ] -> [ HeroCell Tick:m19 ]
+s20 [ stationary Tick:s20 ] -> [ action Tick:next20 ]
+
+
+[ HeroCell Tick:even ] -> gosub ActivatePlayerMovement
+
+
+
+( So the thing about all of this is that the mechanics of the game can trigger chain reactions and
+sometimes even infinite loops)
+
+(But if the reactions happen instantly, it looks like, bad)
+
+(But I also don't want to always have a delay between cause and effect, because it can enable
+a  lot of cheese)
+
+(Throughought a whole month of tweaks I tried many ways to tackle this problem. I am very happy with
+the current version)
+
+( The first time the state of a color changes, the next open/close triggers inmediately.
+But the consecutive triggers are delayed.
+There is a 'cooldown' effect after forcing the first effect trigger, so that if triggers are happening
+constantly, this effect will not happen again until things slow down for a while)
+
+(Additionally, I made the distance between triggers not constant, that makes it sound like it is
+doing music instead of just looping infinitely)
+
+
+(Before maybe  running the locks logic, check if the state of goal cells has changed)
+[ HeroCell ] -> gosub Goals 
+
+(Run the Lock logic but only on certain occasions)
+
+s20 [ HeroCell Tick:odd stationary LockTick:s20 ] -> [ HeroCell Tick:odd action LockTick:next20 ]
+[ HeroCell Tick:odd no LockTick:s20 ] -> [ HeroCell Tick:odd LockTick:m0 ]
+
+[ HeroCell Tick:odd GoalStateChanged no LockCooldown ] -> [ HeroCell Tick:odd GoalStateChanged LockCooldown ExecuteLockLogic LockTick:m0 ]
+
+[ HeroCell Tick:odd LockCooldown LockTick:m19 ] -> [ HeroCell Tick:odd LockTick:m19 ]
+
+
+[ HeroCell LockRate ] -> [ HeroCell LockRate ExecuteLockLogic ]
+
+
+[ ExecuteLockLogic no LockRate  ] -> []
+
+[ HeroCell Tick:odd ExecuteLockLogic ] -> [HeroCell Tick:odd] gosub Locks 
+
+
+
+(Now the movement)
+[ Moving:direction ] -> []
+[ > player ] -> [ > player Moving:> ]
+[ Error ] -> []
+[ HeroCell ] -> gosub SpreadMovement
+
+[ Moving:> Solid | Wall ] -> [ Error Solid | Wall ]
+
+[ HeroCell ] -> gosub SpreadErrors
+
+
+[ Moving:direction ] -> []
+[ > player no Error ] -> [ stationary player Moving:> ]
+[ HeroCell ] -> gosub SpreadMovement
+[ Moving:> Solid ] -> [ > Solid ]
+
+
+[ HeroCell ] ->  gosub Animations
+
+
+
+(================================================================================)
+subroutine ActivatePlayerMovement
+
+[ no KeyPress:> ActiveMoving:> ] -> []
+[ no KeyPress:> ReallyMoving:> ] -> []
+
+
+[ HeroCell ReallyMoving:> stationary KeyPress:> ] -> [ HeroCell ReallyMoving:> action KeyPress:> ]
+
+[ HeroCell ActiveMoving:> ] -> [ HeroCell ActiveMoving:> ReallyMoving:> ]
+
+[ HeroCell stationary KeyPress:> no ActiveMoving:>] -> [ HeroCell action KeyPress:> ActiveMoving:> ExecuteLockLogic ReallyMoving:>]
+([ HeroCell stationary KeyPress:> no ActiveMoving:>] -> [ HeroCell action KeyPress:> ActiveMoving:>  ])
+
+
+
+[ HeroCell action KeyPress:> ][ stationary player ] -> [ HeroCell action KeyPress:>][ > player ]
+
+[ KeyPress:> ] -> []
+
+
+
+
+
+(================================================================================)
+subroutine SpreadMovement
+
+
+startloop
+ [ Moving:> Solid | Pushable no Error ] -> [ Moving:> Solid | Moving:> Pushable]
+ 
+ 
+ direction [ Moving:direction Sticky | Pushable no Error ] -> [ Moving:direction Sticky | Moving:direction Pushable ] SFX1
+ direction [ Moving:direction Solid  | Sticky   no Error ] -> [ Moving:direction Solid  | Moving:direction Sticky   ] SFX1
+
+endloop
+
+subroutine SpreadErrors
+
+startloop
+ [ Moving:> | Error ] ->  [ Error Moving:> | Error ]
+endloop
+
+(==========================================================)
+subroutine Goals 
+(Evaluate All:color, if the state changed, HeroCell will be actioned)
+
+[ HeroCell GoalStateChanged ] -> [ HeroCell ]
+
+color [ Cross:color With:color no PresenceSFX:color ] -> [ Cross:color With:color PresenceSFX:color ]
+color [ PresenceSFX:color no With:color ] -> []
+
+
+
+
+(Evaluate All)
+color [ HeroCell ] -> [ HeroCell All:color ]
+color [ HeroCell All:color][ Cross:color no With:color ] -> [HeroCell][ Cross:color ]
+
+color [ HeroCell PreviouslyAll:color no All:color ] -> [ HeroCell PreviouslyAll:color GoalStateChanged]
+color [ HeroCell All:color no PreviouslyAll:color ] -> [ HeroCell All:color           GoalStateChanged]
+
+[ PreviouslyAll:color ] -> []
+color [ HeroCell All:color ] -> [ HeroCell PreviouslyAll:color All:color ]
+
+
+
+
+
+(========================================================)
+subroutine Locks
+
+[ ExecuteOpen:antistate:color      ] -> []
+[ ExecuteClose:antistate:color     ] -> []
+[ AlmostClose:antistate:color     ] -> []
+
+
+(Open)
+
+color [ HeroCell All:color ][ Closed:color no Open:color ] -> [HeroCell All:color][ Closed:color ExecuteOpen:notanti:color ]
+(Close)
+color [ HeroCell no All:color ][ Open:color ] -> [ HeroCell ][ Open:color AlmostClose:notanti:color ]
+
+(Anti-Open)
+
+color [ HeroCell no All:color ][ AntiClosed:color no OpenAnti:color ] -> [ HeroCell ][ AntiClosed:color ExecuteOpen:anti:color ]
+(Anti-Close)
+color [ HeroCell All:color    ][ OpenAnti:color ] -> [ HeroCell All:color ][ OpenAnti:color AlmostClose:anti:color ]
+
+(Make sure there are no solids in close)
+antistate color [ AlmostClose:antistate:color no Solid ] -> [ ExecuteClose:antistate:color ]
+
+color [ AlmostClose:notanti:color Open:color ]  -> [ action Open:color ]
+color [ AlmostClose:anti:color OpenAnti:color ] -> [ action OpenAnti:color ]
+
+
+
+(I used all those Execute: objects to simplify the rules, but it doesn't really seem
+like it simplified them that much)
+
+(Execute Open)
+
+color other_color [ ExecuteOpen:notanti:color Block:other_color:color ] -> [ OpenBlock:other_color:color ]
+color [ ExecuteOpen:notanti:color Wall:color     ] -> [ OpenWall:color ]
+color [ ExecuteOpen:notanti:color Player:direction:color   ] -> [ OpenPlayer:color ]
+color [ ExecuteOpen:notanti:color WildCard:color ] -> [ OpenWildCard:color ]
+color [ ExecuteOpen:notanti:color Glue:color     ] -> [ OpenGlue:color ]
+
+color other_color [ ExecuteOpen:anti:color AntiBlock:other_color:color ] -> [ OpenAntiBlock:other_color:color ]
+color [ ExecuteOpen:anti:color AntiWall:color     ] -> [ OpenAntiWall:color ]
+color [ ExecuteOpen:anti:color AntiPlayer:direction:color   ] -> [ OpenAntiPlayer:color ]
+color [ ExecuteOpen:anti:color AntiWildCard:color ] -> [ OpenAntiWildCard:color ]
+color [ ExecuteOpen:anti:color AntiGlue:color     ] -> [ OpenAntiGlue:color ]
+
+
+(Execute Close)
+
+color other_color [ ExecuteClose:notanti:color OpenBlock:other_color:color ] -> [ action Block:other_color:color ]
+color [ ExecuteClose:notanti:color OpenWall:color     ] -> [ action Wall:color ]
+color [ ExecuteClose:notanti:color OpenPlayer:color   ] -> [ action Player:right:color ]
+color [ ExecuteClose:notanti:color OpenWildCard:color ] -> [ action WildCard:color ]
+color [ ExecuteClose:notanti:color OpenGlue:color     ] -> [ action Glue:color ]
+
+color other_color [ ExecuteClose:anti:color OpenAntiBlock:other_color:color ] -> [ action AntiBlock:other_color:color ]
+color [ ExecuteClose:anti:color OpenAntiWall:color     ] -> [ action AntiWall:color ]
+color [ ExecuteClose:anti:color OpenAntiPlayer:color   ] -> [ action AntiPlayer:right:color ]
+color [ ExecuteClose:anti:color OpenAntiWildCard:color ] -> [ action AntiWildCard:color ]
+color [ ExecuteClose:anti:color OpenAntiGlue:color     ] -> [ action AntiGlue:color ]
+
+
+
+(============================================)
+subroutine Animations
+
+
+color [ Cross:color With:color ] -> [ action Cross:color With:color ]
+color  [ action Cross:color no CrossSprite:s4:color] -> [ action Cross:color CrossSprite:m0:color ]
+s4 color  [ no Cross:color CrossSprite:s4:color] -> [ ]
+s4 color  [ stationary Cross:color CrossSprite:s4:color] -> [ stationary Cross:color ]
+
+
+s4 color [ stationary CrossSprite:s4:color  ] -> [ action CrossSprite:next4:color ]
+
+
+[ HeroCell no Tick:m0 ][ action Open:color     ] -> [ HeroCell ][ stationary Open:color ]
+[ HeroCell no Tick:m0 ][ action OpenAnti:color ] -> [ HeroCell ][ stationary OpenAnti:color ]
+
+==============
+WINCONDITIONS
+==============
+
+
+
+
+=======
+LEVELS
+=======
+
+
+
+section LOCKED
+MESSAGE If everything is locked, then maybe...
+
+
+WWWWWWWWWWWWWWW
+WWWWWWWWWW....W
+W...W22....L..W
+W.@.Y.WLWWWWWXW
+W...W...W.....W
+WWWWWWWWW.1I1.W
+W.......W.I.I.W
+W.P.3.A.Z.1I1.W
+W.......W.....W
+WWWWWWWWWWWWWWW
+
+section RELOCKED
+MESSAGE One step forward can also be a step back...
+
+
+WWWWWWWWWW
+W.WW.X...W
+W@xZ.W.W.W
+W.WW.L.WIW
+WWWWWW.W1W
+W.P..A..3W
+WWWWWW.W.W
+W....z.z.W
+WWWWWWWWWW
+
+
+section FORESIGHT
+MESSAGE Actions have consequences...
+WWWWWWWWWWWWW
+W3WW2.X...1.W
+WAWWWWxxxxWWW
+W....Z....WWW
+WzzzzWW..Y..W
+W.LI.WW..Y.@W
+W...PWWWWW..W
+WWWWWWWWWWWWW
+
+
+section UNDO
+MESSAGE Back then, it all seemed so easy...
+
+
+WWWWWWWWWWW
+W.....W.@.W
+W.I...W...W
+WYZWWWWWzWW
+W...y.WWXWW
+WPA.y...y.W
+W..Lyy..y.W
+W.1.y2..y.W
+W.3.y...y.W
+WWWWWWWWWWW
+
+
+section VERSATILE
+MESSAGE But we had to learn to be more versatile
+
+
+WWWWWWWWWWWWW
+W@.YY.ZZ.XX.W
+WWWWWWWWWWW.W
+W...........W
+W......*..1.W
+WWWWZWXWXWWWW
+W....z3Y2*P.W
+W....W..L...W
+WWWWWW.....WW
+WWWWWWWWWWWWW
+
+section MULTIPLY
+MESSAGE Make the most out of a few...
+
+WWWWWWWWWWWWW
+W.1..P..X.Y.W
+W.*.....IZY.W
+W.Xx*1.xZ.*YW
+W.322W......W
+WWWWWW.IXWWWW
+W@YXZ..X.W...
+WWWWWWWWWW...
+
+section GLUE
+MESSAGE Some things just stick with you.
+
+
+WWWWWWWWWWWWW
+W...A.......W
+W..A..3...W.W
+W.A...33....W
+W........W..W
+WGG.WWWW....W
+WWWP........W
+W@Z.........W
+WWWWWWWWWWWWW
+
+section OMNIPRESENT
+MESSAGE Sometimes I feel I need to be everywhere at once.
+
+WWWWWWWWWWWWW
+W.123.XYZ.@.W
+W.....WWWWWWW
+W.........WGW
+W...P.....WGW
+W......G....W
+WW........W.W
+W*..........W
+WWWWWWWWWWWWW
+
+
+
+section B-LOCK
+MESSAGE If everything is a lock, maybe there's nothing that can't be opened.
+
+
+
+.......WWWWWWWWWW
+WWWWWWWW..P.....W
+W21..1y1LIJIJIJ.W
+WWWWWWWWWzzWWWWWW
+WWWWWWWWW..WW.@.W
+W3....YXA..ZZ...W
+WWWWWWWWWWWWWWWWW
+
+
+section CLOSURE
+MESSAGE Sometimes you need to close something to open something else.
+
+...WWWWWWWWW
+...W...W..@W
+...W*G*WW..W
+...WGWGWWW.W
+WWWW..*.YZXW
+W....WWWWWWW
+W..W.W...WW.
+W....W3k..W.
+W..WWW2bn1W.
+W..*...P..W.
+WW...W..WWW.
+WWWWWWWWW...
+
+
+section LOCKEDIN
+MESSAGE But what if even us, were a lock
+
+
+WWWWWWWWWWWWW
+W.s.X...Z.@.W
+W...X...Z...W
+WWWWWWWWWWWWW
+W...........W
+W.......R...W
+W..I.L1A.23.W
+WWWWWWWWWWWWW
+
+
+section HELP
+MESSAGE All we need is a little help.
+
+WWWWWWWWWWWWWWWWW
+W.1I...W..W.W.W.W
+W.W....W.sW.W.W.W
+W....S.X..x.W.W.W
+W.2L..AW..W.W.y@W
+W.W...JW.3W.Z.W.W
+W.1I...W..W.W.W.W
+WWWWWWWWWWWWWWWWW
+
+
+section NEVERENDING
+MESSAGE It's a never ending cycle.
+
+
+
+WWWWWWWWWWW
+W.Z.z.Z.z@W
+W.WWWWWWWWW
+W.......WWW
+W....J..WWW
+W..1I.B...W
+W....A..P.W
+W..3......W
+WWWWWWWWWWW
+
+
+section NEVERENDINGP2
+
+WWWWWWWWWWWWW
+WW....WWWWWWW
+W..MMJWWWWWWW
+W..CCJ.WWWWWW
+WE..112WWWWWW
+W...323WW...W
+W.P....WW.@.W
+W..W.WWWW...W
+WWWW.WWWWzWWW
+WWWW.XxYyZWWW
+WWWWWWWWWWWWW
+
+
+(section 03
+MESSAGE Some things just get stuck on you.
+
+
+WWWWWWWWW
+W...@...W
+WZZZZZZZW
+W.......W
+W...G...W
+WW.....WW
+W3.....AW
+WW..P..WW
+WW.....WW
+WWWWWWWWW
+
+
+section 04
+
+
+WWWWWWWWWWWWWW
+WWWW..x...X..W
+W.....x...W@.W
+W.....x..WW..W
+WW1...WWWWWWWW
+WWW...I......W
+WG.......P...W
+W.......AAA..W
+W............W
+WWWWWWWWWWWWWW
+
+section 05
+
+
+....WWWWWWWWW
+....W.....W@W
+WWWWW.JIJ.W.W
+W111..IJI.W.W
+WWWWzzzWWWWXW
+W.....P.WW..W
+W...W.....A3W
+WWWWWWWWWWWWW
+
+
+)
+
+(No section because this level is a secret)
+(section ??)
+MESSAGE It's time to open the world!
+
+
+.............
+....ZZZZ.....
+....Z.3Z.....
+....Z..ZZZ...
+....ZVR..Z...
+....Z..%.Z...
+....Z..ZZZ...
+....ZZZZ.....
+
+
+(Congratulations, by digging into the source code,  you've found the secret level. Sorry in advance)
+
+.......................
+....ZZZZ...zzzz........
+....Z.3Z...z.1z........
+....Z..ZYZ.z..zzz......
+....ZV.R.Z.z1.r.z......
+....Z..%.Z.zj.j.z......
+....Z..ZZZ.z..zzz......
+....ZZZZ...zzzz........
+.......................
+.......xxxx....@.......
+.......x.2x............
+.......x..xxx..........
+.......x2.q.x..........
+.......xm.m.x..........
+.......x..xxx..........
+.......xxxx............
+
